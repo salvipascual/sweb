@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>Sitio de la biblioteca sWeb</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<link rel="stylesheet" type="text/css" href="resources/sWeb-base.css" />
+		<link rel="stylesheet" type="text/css" href="resources/sWeb-index.css" />
+		<script type="text/javascript" src="libs/sWeb-v2.0.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="libs/niftyCorners/niftyCorners.css" />
+		<script type="text/javascript" src="libs/niftyCorners/niftycube.js"></script>
+
+		<script type="text/javascript">
+			// sube el el ejemplo
+			function subirEjemplo(obj){
+				var newChild = doc.getElementById("ejemplo");
+				var refChild = doc.getElementsByTagName("fieldset").item(obj+1);
+//				refChild.appendChild(newChild);
+				refChild.parentNode.insertBefore(newChild,refChild);
+			}
+
+			// imprime el arbol
+			function imprimirArbol(){
+				sWeb.print();
+			}
+
+			// mostrar velocidad de trabajo
+			function agregarTiempo(btn,time){
+				var p = doc.createElement("span");
+				var txt = doc.createTextNode(time + "ms ");
+				p.appendChild(txt);
+				// formato
+				p.setAttribute("style","color:blue; vertical-align:text-top;");
+				// posicion
+				var btnref = doc.getElementsByTagName("button").item(btn);
+				btnref.parentNode.insertBefore(p,btnref.nextSibling);
+			}
+
+			// imprime tiempo de creacion del arbol sWeb
+			function onCreatesWebTree(time){
+				var text = "Árbol sWeb creado en "+time+" milisegundos. ";
+				var txt = doc.createTextNode(text);
+				var ej = doc.getElementById("tiempoArbol");
+				ej.appendChild(txt);
+			}
+
+			// inicia el NiftyCube
+			function startNifty(){
+				Nifty("div#downloads","big"); // para poner los bordes del  download redondos
+			}
+
+			// agrego al escuchador de eventos de sWeb
+			events.onCreateSWebTree = onCreatesWebTree;
+			events.onPageLoad = startNifty;
+
+			// metodos de la interfaz DOMImplementation
+			function _hasFeature(btn){
+				timer.start(); // tiempo
+				var res = doc.implementation.hasFeature("XML","1.0");
+				agregarTiempo(btn,timer.stop()); // tiempo
+				alert("Probando si el navegdor soporta XML version 1.0: " + res);
+			}
+
+
+			// metodos de la interfaz doc
+			function _createAttribute(btn){
+				timer.start(); // tiempo
+				var res = doc.createAttribute("style");
+				agregarTiempo(btn,timer.stop()); // tiempo
+				
+				var ej = doc.getElementById("ejemplo");
+				ej.getElementsByTagName("p").item(0).setAttributeNode(res);
+				ej.getElementsByTagName("p").item(0).setAttribute("style","color:blue;");
+
+				alert("Se ha creado un atributo '"+res.nodeName+"' con valor '"+res.nodeValue+"'. Su objeto asociado es: "+res + "\nNótese como el color del primer texto del ejemplo cambia a azul cuando dicho atributo se le incluye.");
+			}
+
+			function _createCDATASection(btn){
+				timer.start(); // tiempo
+				try{
+					var res = doc.createCDATASection("datos");
+				}catch(e){
+					agregarTiempo(btn,timer.stop()); // tiempo
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con código: "+e.code);
+				}
+			}
+
+			function _createComment(btn){
+				timer.start(); // tiempo
+				var res = doc.createComment("nuevo comentario");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha creado un comentario con el texto '"+res.nodeValue+"'. Su objeto asociado es: "+res);
+			}
+
+			function _createDocumentFragment(btn){
+				timer.start(); // tiempo
+				var res = doc.createDocumentFragment();
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				for(var i=0; i<30; i++)
+					res.appendChild(doc.createElement("input"));
+				doc.getElementById("ejemplo").appendChild(res);
+
+				alert("Se ha creado un fragmento de documento. A este DocumentFragment se le agregaron 30 elementos INPUT y luego se agregó en el ejemplo. Su objeto asociado es: "+res);
+			}
+
+			function _createElement(btn){
+				timer.start(); // tiempo
+				var res = doc.createElement("p");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				res.appendChild(doc.createTextNode("Texto incluído dinámicamente"));
+				doc.getElementById("ejemplo").appendChild(res);
+
+				alert("Se ha creado un elemento '"+res.nodeName+"'. A este se le agregó un texto e incluyó en el ejemplo. Su objeto asociado es: "+res);
+			}
+
+			function _createEntityReference(btn){
+				timer.start(); // tiempo
+				try{
+					var res = doc.createEntityReference("entidad"); 
+				}catch(e){
+					agregarTiempo(btn,timer.stop()); // tiempo
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con código: "+e.code);
+				}
+			}
+
+			function _createProcessingInstruction(btn){
+				timer.start(); // tiempo
+				try{
+					var res = doc.createProcessingInstruction("target","data");
+				}catch(e){
+					agregarTiempo(btn,timer.stop()); // tiempo
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con código: "+e.code);
+				}
+			}
+
+			function _createTextNode(btn){
+				timer.start(); // tiempo
+				var res = doc.createTextNode("texto creado");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				doc.getElementById("ejemplo").appendChild(res);
+
+				alert("Se ha creado un texto que dice '"+res.nodeValue+"'. Este se ha agregado al ejemplo. Su objeto asociado es: "+res);
+			}
+
+			function _getElementsByTagNameA(btn){
+				timer.start(); // tiempo
+					var res = doc.getElementsByTagName("div");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Hay un total de "+res.length+ " elementos DIV en todo el documento.");
+			}
+
+			function _getElementById(btn){
+				timer.start(); // tiempo
+					var res = doc.getElementById("live");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("El elemento INPUT con id='"+res.getAttribute("id")+"', ubicado en el formulario de prueba, es de tipo '"+res.getAttribute("type")+"'. Su objeto asociado es: "+res);
+			}
+
+
+			// metodos de la interfaz Node
+			function _appendChild(btn){
+				var ej = doc.getElementById("kaos");
+				var add = doc.createElement("p").appendChild(doc.createTextNode(" -texto agregado dinámicamente- "));
+				timer.start(); // tiempo
+					ej.appendChild(add);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha agregado al ejemplo un texto dinámicamente");
+			}
+
+			function _cloneNode(btn){
+				var ej = doc.getElementById("kaos");
+				timer.start(); // tiempo
+					var res = ej.cloneNode(true); // cambiar profundidar para solo clonar el nodo
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				ej.appendChild(res);
+				alert("Se ha clonado el DIV con id='kaos', ubicado en el ejemplo y agregado a este dinámicamente. Nótese que cada vez se copia mayor cantidad de información, lo cual hace lento el proceso.");
+			}
+
+			function _hasAttributes(btn){
+				var ej = doc.getElementById("kaos");
+				timer.start(); // tiempo
+					var res = ej.hasAttributes();
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("¿Tiene atributos el DIV con id='kaos'?: " + res);
+			}
+
+			function _hasChildNodes(btn){
+				var ej = doc.getElementById("kaos");
+				timer.start(); // tiempo
+					var res = ej.hasChildNodes();
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("¿Tiene hijos el DIV con id='kaos'?: " + res);
+			}
+
+				function _insertBefore(btn){
+				var ej = doc.getElementById("ejemplo");
+				var newChild = doc.createElement("input");
+				timer.start(); // tiempo
+					ej.insertBefore(newChild, ej.firstChild);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha insertado un elemento INPUT al inicio del ejemplo (antes del primer hijo del ejemplo).");
+			}
+
+			function _removeChild(btn){
+				var ej = doc.getElementById("ejemplo");
+				if(!ej.hasChildNodes())
+					return alert("No existen elementos en el ejemplo para borrar.");
+
+				timer.start(); // tiempo
+					ej.removeChild(ej.lastChild);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha eliminado el último elemento del ejemplo.");
+			}
+
+			function _replaceChild(btn){
+				var refChild = doc.getElementById("testtext");
+				var newChild = doc.createElement("input");
+
+				if(!refChild)
+					return alert("Ya realizó esta operación. Recargue la página para reemplazar nuevamente.");
+
+				timer.start(); // tiempo
+					refChild.parentNode.replaceChild(newChild,refChild);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha reemplazado el penúltimo texto del ejemplo por un elemento INPUT.");
+			}
+
+			// metodos de la interfaz NodeList
+			function _itemA(btn){
+				var res = doc.getElementById("order");
+				timer.start(); // tiempo
+					var res = res.childNodes.item(2);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("El tercer hijo del DIV con id='order' es un elemento de tipo '"+res.nodeName+"' cuyo objeto asociado es: "+res);
+			}
+
+			// metodos de la interfaz NamedNodeMap
+			function _itemB(btn){
+				var res = doc.getElementById("kaos");
+				timer.start(); // tiempo
+					var res = res.attributes.item(2);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("El segundo atributo del DIV con id='kaos' es: '"+res.nodeName+"' y su objeto asociado es: "+res);
+			}
+
+			function _getNamedItem(btn){
+				var res = doc.getElementById("live");
+				timer.start(); // tiempo
+					var res = res.attributes.getNamedItem("style");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				if(res)
+					alert("El valor del atruibuto 'style' del INPUT ubicado en el ejemplo es: "+res.nodeValue);
+				else
+					alert("El atributo 'style' no existe en el elemento INPUT del ejemplo");
+			}
+
+			function _removeNamedItem(btn){
+				var res = doc.getElementById("live");
+				timer.start(); // tiempo
+				try{
+					res.attributes.removeNamedItem("style");
+					agregarTiempo(btn,timer.stop()); // tiempo
+				}catch(e){
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con código: "+e.code);
+					return;
+				}
+
+				alert("Se ha eliminado el atributo 'style' del INPUT ubicado en el ejemplo. Su objeto asociado es: "+res);
+			}
+
+			function _setNamedItem(btn){
+				var res = doc.getElementById("live").attributes;
+				var arg = doc.createAttribute("style");
+				arg.nodeValue = "border: 10px dotted green;";
+
+				timer.start(); // tiempo
+					res.setNamedItem(arg);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha modificado el borde del INPUT ubicado en el ejemplo.");
+			}
+
+			// metodos de la interfaz CharacterData
+			function _appendData(btn){
+				var texto = doc.getElementById("testtext").firstChild;
+				timer.start(); // tiempo
+					texto.appendData(", de cuyo nombre no quiero acordarme");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha agregado un texto al segundo elemento TEXT del ejemplo.");
+			}
+
+			function _deleteData(btn){
+				var texto = doc.getElementById("testtext").firstChild;
+				timer.start(); // tiempo
+					texto.deleteData(5,7);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha eliminado parte (siete caracteres a partir del quinto caracter) del segundo elemento TEXT del ejemplo.");
+			}
+			
+			function _insertData(btn){
+				var texto = doc.getElementById("testtext").firstChild;
+				timer.start(); // tiempo
+					texto.insertData(5," HE AQUI UN TEXTO QUE INSERTO ");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha insertado un texto (a partir del quinto caracter) al segundo elemento TEXT del ejemplo.");
+			}
+
+			function _replaceData(btn){
+				var texto = doc.getElementById("testtext").firstChild;
+				timer.start(); // tiempo
+					texto.replaceData(5,6," TEXTO REEMPLAZADO ");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se han reemplazado seis caracteres (a partir del quinto caracter) en el segundo elemento TEXT del ejemplo.");
+			}
+
+			function _substringData(btn){
+				var texto = doc.getElementById("testtext").firstChild;
+				timer.start(); // tiempo
+					var ret = texto.substringData(5,7);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("La porción del quinto al septimo caracter, del segundo elemento TEXT del ejemplo, corresponde a: "+ret);
+			}
+
+			// metodos de la interfaz Element
+			function _getAttribute(btn){
+				var elemento = doc.getElementById("live");
+				timer.start(); // tiempo
+					var res = elemento.getAttribute("title");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("El atributo 'title' del elemento con id='live' es: "+res+"\nDetenga el cursor sobre la caja de texto del ejemplo para observarlo.");
+			}
+
+			function _getAttributeNode(btn){
+				var elemento = doc.getElementById("live");
+				timer.start(); // tiempo
+					var res = elemento.getAttributeNode("title");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("El objeto asociado al atributo 'title' del elemento con id='live' es: "+res+"\nSu valor es: "+res.nodeValue);
+			}
+
+			function _getElementsByTagNameB(btn){
+				var ej = doc.getElementById("ejemplo");
+				timer.start(); // tiempo
+					var res = ej.getElementsByTagName("INPUT");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Hay un total de "+res.length+ " elemento(s) INPUT dentro del ejemplo.\nPuede añadir otros (cloneNode, insertBefore) para  variar esta cifra.");
+			}
+
+			function _removeAttribute(btn){
+				var elemento = doc.getElementById("live");
+				timer.start(); // tiempo
+					elemento.removeAttribute("style");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha eliminado el atributo 'style' del INPUT ubicado en el ejemplo.");
+			}
+
+			function _removeAttributeNode(btn){
+				var elemento = doc.getElementById("live");
+				var oldAttr = elemento.getAttributeNode("title");
+
+				timer.start(); // tiempo
+				try{
+					var res = elemento.removeAttributeNode(oldAttr);
+					agregarTiempo(btn,timer.stop()); // tiempo
+				}catch(e){
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con código: "+e.code);
+					return;
+				}
+
+				alert("Se ha eliminado el atributo 'title' del elemento con id='live'. Su objeto asociado es: "+res+"\nDetenga el cursor sobre la caja de texto del ejemplo para observarlo.");
+			}
+
+			function _setAttribute(btn){
+				var elemento = doc.getElementById("live");
+				timer.start(); // tiempo
+					elemento.setAttribute("value","un valor");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha agregado un atributo value='un valor' a la caja de texto del ejemplo.");
+			}
+			
+			function _setAttributeNode(btn){
+				var elemento = doc.getElementById("live");
+				var newAttr = doc.createAttribute("type");
+				newAttr.nodeValue = "text";
+
+				timer.start(); // tiempo
+					elemento.setAttributeNode(newAttr);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Se ha modificado el atributo type='password' por type='text' para la caja de texto ubicada en el ejemplo.");
+			}
+
+			function _hasAttribute(btn){
+				var elemento = doc.getElementById("live");
+				timer.start(); // tiempo
+					var res = elemento.hasAttribute("title");
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("¿Contiene la caja de texto del ejemplo el atributo 'title'?: "+res);
+			}
+			
+
+			// metodos de la interfaz Text
+			function _splitText(btn){
+				var parrafo = doc.getElementById("testtext");
+				alert("Cantidad de hijos del segundo párrafo del ejemplo (antes de dividir): "+parrafo.childNodes.length);
+				timer.start(); // tiempo
+					parrafo.firstChild.splitText(5);
+				agregarTiempo(btn,timer.stop()); // tiempo
+
+				alert("Cantidad de hijos del segundo párrafo del ejemplo (después de dividir): "+parrafo.childNodes.length);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+
+			<!-- imagen superior (arannas) -->
+			<img id="top-image" src="resources/top.png" alt="top-banner"/>
+
+			<div class="header">
+				<h1 style="text-align:center; margin-bottom:5px;">Bienvenido al sitio oficial de la biblioteca sWeb</h1>
+			</div>
+
+			<!-- intro -->
+			<div id="intro">
+				<div id="downloads"> <!-- downloads -->
+					<h2>Descargar sWeb</h2>	
+					<ul>
+						<li><a href="downloads/sWeb-v2.0[develop].zip">sWeb-v2.0</a> (para desarrollar) - 12 kb</li>
+						<li><a href="downloads/sWeb-v2.0[work].zip">sWeb-v2.0</a> (para trabajar) - 6 kb</li>
+						<li><a href="downloads/sWeb-help.zip">Ayuda de sWeb</a> - 36 kb</li>
+						<li><a href="downloads/use-sWeb.zip">Logotipo de sWeb</a> - 2 kb</li>
+					</ul>
+				</div>
+
+				<div id="moreinfo"> <!-- informacion de sWeb -->
+					<h2>¿Qué es sWeb?</h2>				
+					<p>sWeb ayuda a estandarizar la Web al hacer trabajar en cualquier navegador las <i>recomendaciones del W3C</i>. Es un proyecto 100% libre, planeado para eliminar la programación multi-navegador (cross-browsing), agilizar el desarrollo de sitios y proporcionar el aprendizaje según buenas técnicas de programación.
+						<a style="text-decoration:none; font-size:small;" title="Obtener más información" href="about.html">leer más...</a>
+					</p>
+				</div>
+			</div>
+
+			<div class="header" id="sweb-test">
+				<h1 style="text-align:center; margin-bottom:5px;">Prueba de m&eacute;todos DOM Nivel Uno estandarizados</h1>
+				<span id="tiempoArbol"></span>
+				<span>Los m&eacute;todos en <b><i>rojo</i></b> no son soportados correctamente por IE</span>
+			</div>
+
+			<fieldset>
+				<legend>DOMImplementation</legend>
+				<p class="ejemplo" onclick="subirEjemplo(0);">Traer ejemplo</p>
+				<button onclick="_hasFeature(0);">bool <b>hasFeature</b>(feature, version)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>Document</legend>
+				<p class="ejemplo" onclick="subirEjemplo(1);">Traer ejemplo</p>
+				<button onclick="_createAttribute(1);">Attr <b>createAttribute</b>(name)</button><br/>
+				<button onclick="_createCDATASection(2);">CDATASection <b>createCDATASection</b>(data)</button><br/>
+				<button onclick="_createComment(3);">Comment <b>createComment</b>(data)</button><br/>
+				<button onclick="_createDocumentFragment(4);" class="notInIE">DocumentFragment <b>createDocumentFragment</b>()</button><br/>
+				<button onclick="_createElement(5);">Element <b>createElement</b>(tagName)</button><br/>
+				<button onclick="_createEntityReference(6);">EntityReference <b>createEntityReference</b>(name)</button><br/>
+				<button onclick="_createProcessingInstruction(7);">ProcessingInstruction <b>createProcessingInstruction</b>(target,data)</button><br/>
+				<button onclick="_createTextNode(8);">Text <b>createTextNode</b>(data)</button><br/>
+				<button onclick="_getElementsByTagNameA(9);">NodeList <b>getElementsByTagName</b>(tagName)</button><br/>
+				<button onclick="_getElementById(10);">Element <b>getElementById</b>(strNodeId)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>Node</legend>
+				<p class="ejemplo" onclick="subirEjemplo(2);">Traer ejemplo</p>
+				<button onclick="_appendChild(11);">void <b>appendChild</b>(newChild)</button><br/>
+				<button onclick="_cloneNode(12);">Node <b>cloneNode</b>(deep)</button><br/>
+				<button onclick="_hasAttributes(13);" class="notInIE">bool <b>hasAttributes</b>()</button><br/>
+				<button onclick="_hasChildNodes(14);">bool <b>hasChildNodes</b>()</button><br/>
+				<button onclick="_insertBefore(15);">Node <b>insertBefore</b>(newChild,refChild)</button><br/>
+				<button onclick="_removeChild(16);">Node <b>removeChild</b>(oldChild)</button><br/>
+				<button onclick="_replaceChild(17);">Node <b>replaceChild</b>(newChild,refChild)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>NodeList</legend>
+				<p class="ejemplo" onclick="subirEjemplo(3);">Traer ejemplo</p>
+				<button onclick="_itemA(18);">Node <b>item</b>(index)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>NamedNodeMap</legend>
+				<p class="ejemplo" onclick="subirEjemplo(4);">Traer ejemplo</p>
+				<button onclick="_itemB(19);">Node <b>item</b>(index)</button><br/>
+				<button onclick="_getNamedItem(20);">Node <b>getNamedItem</b>(name)</button><br/>
+				<button onclick="_removeNamedItem(21);" class="notInIE">Node <b>removeNamedItem</b>(name)</button><br/>
+				<button onclick="_setNamedItem(22);" class="notInIE">Node <b>setNamedItem</b>(arg)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>CharacterData</legend>
+				<p class="ejemplo" onclick="subirEjemplo(5);">Traer ejemplo</p>
+				<button onclick="_appendData(23);">void <b>appendData</b>(arg)</button><br/>
+				<button onclick="_deleteData(24);">void <b>deleteData</b>(offset,count)</button><br/>
+				<button onclick="_insertData(25);">void <b>insertData</b>(offset,arg)</button><br/>
+				<button onclick="_replaceData(26);">String <b>replaceData</b>(offset,count,arg)</button><br/>
+				<button onclick="_substringData(27);">String <b>substringData</b>(offset,count)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>Element</legend>
+				<p class="ejemplo" onclick="subirEjemplo(6);">Traer ejemplo</p>
+				<button onclick="_getAttribute(28);">String <b>getAttribute</b>(name)</button><br/>
+				<button onclick="_getAttributeNode(29);">Attr <b>getAttributeNode</b>(name)</button><br/>
+				<button onclick="_getElementsByTagNameB(30);">NodeList <b>getElementsByTagName</b>(name)</button><br/>
+				<button onclick="_removeAttribute(31);" class="notInIE">void <b>removeAttribute</b>(name)</button><br/>
+				<button onclick="_removeAttributeNode(32);" class="notInIE">Attr <b>removeAttributeNode</b>(oldAttr)</button><br/>
+				<button onclick="_setAttribute(33);" class="notInIE">void <b>setAttribute</b>(name,value)</button><br/>
+				<button onclick="_setAttributeNode(34);" class="notInIE">Attr <b>setAttributeNode</b>(newAttr)</button><br/>
+				<button onclick="_hasAttribute(35);" class="notInIE">bool <b>hasAttribute</b>(name)</button><br/>
+			</fieldset>
+
+			<fieldset>
+				<legend>Text</legend>
+				<p class="ejemplo" onclick="subirEjemplo(7);">Traer ejemplo</p>
+				<button onclick="_splitText(36);">Text <b>splitText</b>(offset)</button><br/>
+			</fieldset>
+
+			<fieldset style="display:none;"></fieldset>	<!-- fieldset invisible, para posicionar el ejemplo para el último -->
+
+			
+			<!-- ejemplo -->
+			<div id="ejemplo">
+				<p>esto es un c&oacute;digo de ejemplo que se posiciona bajo la interfaz a probar</p>
+				<div id="kaos" title="atributo 'title' del DIV con id='kaos'" style="text-align:left;">
+					<!-- un comentario -->
+					<div id="order" style="margin: 1px;">
+						<input id="live" title="inserte su clave aqui" type="password" name="texto" style="border: 5px solid #9C0000;"/>
+						<p id="testtext">texto dentro de un párrafo</p>
+						<span><b>texto dentro de un spam</b></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Utiles -->
+			<div class="header">
+				<h1 style="text-align:center; margin-bottom:5px;">Conozca más sobre sWeb</h1>
+			</div>
+
+			<div style="text-align:center; margin:10px; padding:10px;">
+				<button class="options" onclick="imprimirArbol();">Mostrar &aacute;rbol sWeb</button>
+				<button class="options" onclick="location.href='help.html';">Consultar ayuda de sWeb</button>
+				<button class="options" onclick="location.href='about.html';">Acerca de</button>
+				<button class="options" onclick="location.href='historial.xml';">Historial de cambios</button>
+				<button class="options" onclick="location.href='licences/gpl-en.htm';">Licencia del software</button>
+				<button class="options" onclick="location.href='comments.php';">Leer y agregar comentarios</button>
+			</div>
+
+			<!-- Logos -->
+			<div class="logos">
+				<img src="resources/valid-xhtml10.png" alt="Validado por HTML Validator" title="Validado por HTML Validator"/>
+				<img src="resources/use-sWeb.PNG" alt="Usa la biblioteca de clases sWeb" title="Usa la biblioteca de clases sWeb"/>
+			</div>
+
+		</div><div id="corners"></div>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- nuevas entradas arriba -->
+<history>
+
+	<cambio date="26-2-2011">
+		<text>Se hostea el sitio en salvipascual.com</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="19-8-2009">
+		<text>Se crea e incluye al sitio la pagina de agregar y leer comentarios</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="16-8-2009">
+		<text>Se incluye el evento onPageLoad a sWeb</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="15-8-2009">
+		<text>Se recrea la interface de usuario del sitio de sWeb</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+	
+	<cambio date="15-8-2009">
+		<text>Acaba la creacion del proyecto de identidad de sWeb y se le agrega el logo al sitio</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+
+	<cambio date="14-8-2009">
+		<text>Se agrega al  sitio de sWeb la opcion de realizar descargas</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	
+	<cambio date="14-8-2009">
+		<text>Se recrea la interface de usuario del sitio de sWeb</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="10-8-2009">
+		<text>Se incluyen las paginas de ayuda y de contacto</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+	
+	<cambio date="10-8-2009">
+		<text>Se modifica el texto de ayuda del metodo splitText</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="10-8-2009">
+		<text>Se arreglan los metodos de la interfaz CharacterData</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="5-8-2009">
+		<text>Se corrige un error critico en el metodo setNamedItem de la interfaz NamedNodeMap</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="4-8-2009">
+		<text>Se corrigen errores en la interfaz NamedNodeMap</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+	<cambio date="31-7-2009">
+		<text>Se corrigen errores en la interfaz Document</text>
+		<user>Salvador Pascual</user>
+	</cambio>		
+
+	<cambio date="30-7-2009">
+		<text>Se corrigen errores criticos en las propiedades createDocumentFragment y appendChild</text>
+		<user>Salvador Pascual</user>
+	</cambio>	
+
+	<cambio date="29-7-2009">
+		<text>Se corrige errores en el metodo createAttribute</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+	
+	<cambio date="16-6-2009">
+		<text>Se publica la version 2.0 de sWeb en el servidor ftp://tester@10.8.180.210</text>
+		<user>Salvador Pascual</user>
+	</cambio>
+
+</history>

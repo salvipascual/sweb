@@ -1,0 +1,67 @@
+/*
+	Hoja de estilos para la pagina de pruebas de sWeb
+	Creada por Salvi Pascual, 11 de agosto del 2009
+*/
+
+/*
+	estilo por defecto de la indentidad para sWeb
+*/
+
+body {
+	padding: 0em 2em 0em 2em;
+	margin: 0;
+	font-family: sans-serif;
+	color: black;
+	background: white;
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+:link { color: #00C; background: transparent; }
+:visited { color: #609; background: transparent; }
+a:active { color: #C00; background: transparent; }
+a:hover { color: #0F633B; }
+
+h1, h2, h3 { color: #0F633B; background: white; }
+h1 { font: 170% sans-serif; }
+h2 { font: 120% sans-serif; }
+h3 { font: 100% sans-serif; }
+
+button{
+	width: 500px;
+	margin: 5px;
+}
+
+button.notInIE{
+	color: #9C0000;
+}
+
+button.options{
+	width: 200px;
+	margin: 5px;
+}
+
+fieldset{
+	border: 1px dotted gray;
+	margin-bottom: 20px;
+	padding: 5px;
+	width: 700px;
+	position: relative; /*para centrar los elementos*/
+	left: 50%;
+	margin-left: -350px;
+	
+}
+
+legend{
+	font-weight: bold;
+}
+
+i{
+	font-style: normal;
+	color: #9C0000;
+}
+
+li{
+	margin: 10px;
+}
