@@ -38,7 +38,7 @@
 
 			// imprime tiempo de creacion del arbol sWeb
 			function onCreatesWebTree(time){
-				var text = "¡rbol sWeb creado en "+time+" milisegundos. ";
+				var text = "√Årbol sWeb creado en "+time+" milisegundos. ";
 				var txt = doc.createTextNode(text);
 				var ej = doc.getElementById("tiempoArbol");
 				ej.appendChild(txt);
@@ -72,7 +72,7 @@
 				ej.getElementsByTagName("p").item(0).setAttributeNode(res);
 				ej.getElementsByTagName("p").item(0).setAttribute("style","color:blue;");
 
-				alert("Se ha creado un atributo '"+res.nodeName+"' con valor '"+res.nodeValue+"'. Su objeto asociado es: "+res + "\nNÛtese como el color del primer texto del ejemplo cambia a azul cuando dicho atributo se le incluye.");
+				alert("Se ha creado un atributo '"+res.nodeName+"' con valor '"+res.nodeValue+"'. Su objeto asociado es: "+res + "\nN√≥tese como el color del primer texto del ejemplo cambia a azul cuando dicho atributo se le incluye.");
 			}
 
 			function _createCDATASection(btn){
@@ -81,7 +81,7 @@
 					var res = doc.createCDATASection("datos");
 				}catch(e){
 					agregarTiempo(btn,timer.stop()); // tiempo
-					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con cÛdigo: "+e.code);
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con c√≥digo: "+e.code);
 				}
 			}
 
@@ -102,7 +102,7 @@
 					res.appendChild(doc.createElement("input"));
 				doc.getElementById("ejemplo").appendChild(res);
 
-				alert("Se ha creado un fragmento de documento. A este DocumentFragment se le agregaron 30 elementos INPUT y luego se agregÛ en el ejemplo. Su objeto asociado es: "+res);
+				alert("Se ha creado un fragmento de documento. A este DocumentFragment se le agregaron 30 elementos INPUT y luego se agreg√≥ en el ejemplo. Su objeto asociado es: "+res);
 			}
 
 			function _createElement(btn){
@@ -110,10 +110,10 @@
 				var res = doc.createElement("p");
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				res.appendChild(doc.createTextNode("Texto incluÌdo din·micamente"));
+				res.appendChild(doc.createTextNode("Texto inclu√≠do din√°micamente"));
 				doc.getElementById("ejemplo").appendChild(res);
 
-				alert("Se ha creado un elemento '"+res.nodeName+"'. A este se le agregÛ un texto e incluyÛ en el ejemplo. Su objeto asociado es: "+res);
+				alert("Se ha creado un elemento '"+res.nodeName+"'. A este se le agreg√≥ un texto e incluy√≥ en el ejemplo. Su objeto asociado es: "+res);
 			}
 
 			function _createEntityReference(btn){
@@ -122,7 +122,7 @@
 					var res = doc.createEntityReference("entidad"); 
 				}catch(e){
 					agregarTiempo(btn,timer.stop()); // tiempo
-					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con cÛdigo: "+e.code);
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con c√≥digo: "+e.code);
 				}
 			}
 
@@ -132,7 +132,7 @@
 					var res = doc.createProcessingInstruction("target","data");
 				}catch(e){
 					agregarTiempo(btn,timer.stop()); // tiempo
-					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con cÛdigo: "+e.code);
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con c√≥digo: "+e.code);
 				}
 			}
 
@@ -166,12 +166,12 @@
 			// metodos de la interfaz Node
 			function _appendChild(btn){
 				var ej = doc.getElementById("kaos");
-				var add = doc.createElement("p").appendChild(doc.createTextNode(" -texto agregado din·micamente- "));
+				var add = doc.createElement("p").appendChild(doc.createTextNode(" -texto agregado din√°micamente- "));
 				timer.start(); // tiempo
 					ej.appendChild(add);
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("Se ha agregado al ejemplo un texto din·micamente");
+				alert("Se ha agregado al ejemplo un texto din√°micamente");
 			}
 
 			function _cloneNode(btn){
@@ -181,7 +181,7 @@
 				agregarTiempo(btn,timer.stop()); // tiempo
 
 				ej.appendChild(res);
-				alert("Se ha clonado el DIV con id='kaos', ubicado en el ejemplo y agregado a este din·micamente. NÛtese que cada vez se copia mayor cantidad de informaciÛn, lo cual hace lento el proceso.");
+				alert("Se ha clonado el DIV con id='kaos', ubicado en el ejemplo y agregado a este din√°micamente. N√≥tese que cada vez se copia mayor cantidad de informaci√≥n, lo cual hace lento el proceso.");
 			}
 
 			function _hasAttributes(btn){
@@ -190,7 +190,7 @@
 					var res = ej.hasAttributes();
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("øTiene atributos el DIV con id='kaos'?: " + res);
+				alert("¬øTiene atributos el DIV con id='kaos'?: " + res);
 			}
 
 			function _hasChildNodes(btn){
@@ -199,7 +199,7 @@
 					var res = ej.hasChildNodes();
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("øTiene hijos el DIV con id='kaos'?: " + res);
+				alert("¬øTiene hijos el DIV con id='kaos'?: " + res);
 			}
 
 				function _insertBefore(btn){
@@ -221,7 +221,7 @@
 					ej.removeChild(ej.lastChild);
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("Se ha eliminado el ˙ltimo elemento del ejemplo.");
+				alert("Se ha eliminado el √∫ltimo elemento del ejemplo.");
 			}
 
 			function _replaceChild(btn){
@@ -229,13 +229,13 @@
 				var newChild = doc.createElement("input");
 
 				if(!refChild)
-					return alert("Ya realizÛ esta operaciÛn. Recargue la p·gina para reemplazar nuevamente.");
+					return alert("Ya realiz√≥ esta operaci√≥n. Recargue la p√°gina para reemplazar nuevamente.");
 
 				timer.start(); // tiempo
 					refChild.parentNode.replaceChild(newChild,refChild);
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("Se ha reemplazado el pen˙ltimo texto del ejemplo por un elemento INPUT.");
+				alert("Se ha reemplazado el pen√∫ltimo texto del ejemplo por un elemento INPUT.");
 			}
 
 			// metodos de la interfaz NodeList
@@ -277,7 +277,7 @@
 					res.attributes.removeNamedItem("style");
 					agregarTiempo(btn,timer.stop()); // tiempo
 				}catch(e){
-					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con cÛdigo: "+e.code);
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con c√≥digo: "+e.code);
 					return;
 				}
 
@@ -339,7 +339,7 @@
 					var ret = texto.substringData(5,7);
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("La porciÛn del quinto al septimo caracter, del segundo elemento TEXT del ejemplo, corresponde a: "+ret);
+				alert("La porci√≥n del quinto al septimo caracter, del segundo elemento TEXT del ejemplo, corresponde a: "+ret);
 			}
 
 			// metodos de la interfaz Element
@@ -367,7 +367,7 @@
 					var res = ej.getElementsByTagName("INPUT");
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("Hay un total de "+res.length+ " elemento(s) INPUT dentro del ejemplo.\nPuede aÒadir otros (cloneNode, insertBefore) para  variar esta cifra.");
+				alert("Hay un total de "+res.length+ " elemento(s) INPUT dentro del ejemplo.\nPuede a√±adir otros (cloneNode, insertBefore) para  variar esta cifra.");
 			}
 
 			function _removeAttribute(btn){
@@ -388,7 +388,7 @@
 					var res = elemento.removeAttributeNode(oldAttr);
 					agregarTiempo(btn,timer.stop()); // tiempo
 				}catch(e){
-					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con cÛdigo: "+e.code);
+					alert("Se ha lanzado una DOMException de tipo: '"+sWebGl.DOMExeptionType(e.code)+"' y con c√≥digo: "+e.code);
 					return;
 				}
 
@@ -422,19 +422,19 @@
 					var res = elemento.hasAttribute("title");
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("øContiene la caja de texto del ejemplo el atributo 'title'?: "+res);
+				alert("¬øContiene la caja de texto del ejemplo el atributo 'title'?: "+res);
 			}
 			
 
 			// metodos de la interfaz Text
 			function _splitText(btn){
 				var parrafo = doc.getElementById("testtext");
-				alert("Cantidad de hijos del segundo p·rrafo del ejemplo (antes de dividir): "+parrafo.childNodes.length);
+				alert("Cantidad de hijos del segundo p√°rrafo del ejemplo (antes de dividir): "+parrafo.childNodes.length);
 				timer.start(); // tiempo
 					parrafo.firstChild.splitText(5);
 				agregarTiempo(btn,timer.stop()); // tiempo
 
-				alert("Cantidad de hijos del segundo p·rrafo del ejemplo (despuÈs de dividir): "+parrafo.childNodes.length);
+				alert("Cantidad de hijos del segundo p√°rrafo del ejemplo (despu√©s de dividir): "+parrafo.childNodes.length);
 			}
 		</script>
 	</head>
@@ -462,9 +462,9 @@
 				</div>
 
 				<div id="moreinfo"> <!-- informacion de sWeb -->
-					<h2>øQuÈ es sWeb?</h2>				
-					<p>sWeb ayuda a estandarizar la Web al hacer trabajar en cualquier navegador las <i>recomendaciones del W3C</i>. Es un proyecto 100% libre, planeado para eliminar la programaciÛn multi-navegador (cross-browsing), agilizar el desarrollo de sitios y proporcionar el aprendizaje seg˙n buenas tÈcnicas de programaciÛn.
-						<a style="text-decoration:none; font-size:small;" title="Obtener m·s informaciÛn" href="about.html">leer m·s...</a>
+					<h2>¬øQu√© es sWeb?</h2>				
+					<p>sWeb ayuda a estandarizar la Web al hacer trabajar en cualquier navegador las <i>recomendaciones del W3C</i>. Es un proyecto 100% libre, planeado para eliminar la programaci√≥n multi-navegador (cross-browsing), agilizar el desarrollo de sitios y proporcionar el aprendizaje seg√∫n buenas t√©cnicas de programaci√≥n.
+						<a style="text-decoration:none; font-size:small;" title="Obtener m√°s informaci√≥n" href="about.html">leer m√°s...</a>
 					</p>
 				</div>
 			</div>
@@ -552,7 +552,7 @@
 				<button onclick="_splitText(36);">Text <b>splitText</b>(offset)</button><br/>
 			</fieldset>
 
-			<fieldset style="display:none;"></fieldset>	<!-- fieldset invisible, para posicionar el ejemplo para el ˙ltimo -->
+			<fieldset style="display:none;"></fieldset>	<!-- fieldset invisible, para posicionar el ejemplo para el √∫ltimo -->
 
 			
 			<!-- ejemplo -->
@@ -562,7 +562,7 @@
 					<!-- un comentario -->
 					<div id="order" style="margin: 1px;">
 						<input id="live" title="inserte su clave aqui" type="password" name="texto" style="border: 5px solid #9C0000;"/>
-						<p id="testtext">texto dentro de un p·rrafo</p>
+						<p id="testtext">texto dentro de un p√°rrafo</p>
 						<span><b>texto dentro de un spam</b></span>
 					</div>
 				</div>
@@ -570,7 +570,7 @@
 
 			<!-- Utiles -->
 			<div class="header">
-				<h1 style="text-align:center; margin-bottom:5px;">Conozca m·s sobre sWeb</h1>
+				<h1 style="text-align:center; margin-bottom:5px;">Conozca m√°s sobre sWeb</h1>
 			</div>
 
 			<div style="text-align:center; margin:10px; padding:10px;">
