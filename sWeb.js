@@ -7,7 +7,7 @@
 		A partir de ella utilice la variable doc como referencia 
 		al objeto <body> en vez de la sentencia document.
 */
-var sWeb, doc = null;
+var sWeb, doc = null; 
 window.onload = new Function("sWeb = new sWebBase();");
 
 /**
